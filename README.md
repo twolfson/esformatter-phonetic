@@ -2,6 +2,16 @@
 
 Esformatter plugin that renames variables and functions to pronounceable names
 
+**Progress on this project has been halted. I thought it would be a simple problem but there are a lot of hard parts. For the time being, please use `beautify-with-words`.**
+
+Problems:
+
+- Don't rename undeclared globals (e.g. `console`)
+- Figure out what to do in a `with`
+- Rename properties consistently across (e.g. `a.b`, `c.b` -> `hello.world`, `goodbye.moon`)
+    - Technically we don't need `b` to change between definitions but we need to keep track since `with` might cause issues... never mind it wouldn't.
+    - TODO: Delete this point
+
 ## Getting Started
 Install the module with: `npm install esformatter-phonetic`
 
