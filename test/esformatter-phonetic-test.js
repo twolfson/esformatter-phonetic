@@ -17,6 +17,16 @@ var testUtils = {
           baseSeed: 1337
         }
       });
+
+      // If we are in a debug environment, write the output to disk
+      if (process.env.TEST_DEBUG) {
+        try {
+          fs.mkdirSync(__dirname + '/actual-files/');
+        } catch (err) {
+          // Ignore error (prob caused by directory existing)
+        }
+        fs.writeFileSync(filepath.replace('test-files/', 'actual-files/'));
+      }
     });
     after(function cleanup () {
       // Cleanup output
