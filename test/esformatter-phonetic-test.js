@@ -1,4 +1,4 @@
-var esformatter_phonetic = require('../');
+var esformatterPhonetic = require('../');
 
 describe('esformatter-phonetic', function () {
   before(function () {
