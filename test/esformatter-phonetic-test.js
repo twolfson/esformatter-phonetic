@@ -12,7 +12,11 @@ var testUtils = {
     before(function formatFn () {
       // Format our content
       var input = fs.readFileSync(filepath, 'utf8');
-      this.output = esformatter.format(input);
+      this.output = esformatter.format(input, {
+        phonetic: {
+          baseSeed: 1337
+        }
+      });
     });
     after(function cleanup () {
       // Cleanup output
