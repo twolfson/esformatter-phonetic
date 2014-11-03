@@ -39,11 +39,20 @@ var testUtils = {
 
 // Start our tests
 describe('esformatter-phonetic', function () {
-  describe('formatting a JS file with single variable definitions', function () {
+  describe('formatting a JS file with a single variable in a `var`', function () {
     testUtils.format(__dirname + '/test-files/single-variables.js');
 
     it('updates the names', function () {
       var expectedOutput = fs.readFileSync(__dirname + '/expected-files/single-variables.js', 'utf8');
+      assert.strictEqual(this.output, expectedOutput);
+    });
+  });
+
+  describe('formatting a JS file with multiple variables in a `var`', function () {
+    testUtils.format(__dirname + '/test-files/multiple-variables.js');
+
+    it('updates the names', function () {
+      var expectedOutput = fs.readFileSync(__dirname + '/expected-files/multiple-variables.js', 'utf8');
       assert.strictEqual(this.output, expectedOutput);
     });
   });
