@@ -1,4 +1,5 @@
 // Load in dependencies
+var fs = require('fs');
 var esformatter = require('esformatter');
 var esformatterPhonetic = require('../');
 
@@ -27,6 +28,7 @@ describe('esformatter-phonetic', function () {
 
     it('updates the names', function () {
       // TODO: Generate a seed and stick to it
+      console.log(this.output);
     });
   });
 });
