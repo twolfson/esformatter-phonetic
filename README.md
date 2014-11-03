@@ -9,6 +9,7 @@ Problems:
 - Don't rename undeclared variables (e.g. `console`)
 - Don't rename variables inside of a `with` (unable to predict undeclared/not)
 - Determine whether variable has been declared (e.g. analyze hoisting)
+    - Might be able to leverage this https://github.com/leobalter/rocambole-method-rename/blob/e872676e4a2cd5bb98bb19c3c7e7f44517c251f4/index.js
 
 ## Getting Started
 Install the module with: `npm install esformatter-phonetic`
