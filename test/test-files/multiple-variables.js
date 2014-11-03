@@ -1,2 +1,3 @@
 var a = 'hello', b;
-var c = 'world', d;
+var c, d = 'world';
+console.log(a, b, c, d);
