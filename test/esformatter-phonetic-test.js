@@ -1,4 +1,5 @@
 // Load in dependencies
+var assert = require('assert');
 var fs = require('fs');
 var esformatter = require('esformatter');
 var esformatterPhonetic = require('../');
@@ -42,9 +43,8 @@ describe('esformatter-phonetic', function () {
     testUtils.format(__dirname + '/test-files/single-variables.js');
 
     it('updates the names', function () {
-      // TODO: Generate a seed and stick to it
-      console.log('');
-      console.log(this.output);
+      var expectedOutput = fs.readFileSync(__dirname + '/expected-files/single-variables.js', 'utf8');
+      assert.strictEqual(this.output, expectedOutput);
     });
   });
 });
