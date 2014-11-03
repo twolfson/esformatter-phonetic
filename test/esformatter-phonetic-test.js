@@ -25,7 +25,8 @@ var testUtils = {
         } catch (err) {
           // Ignore error (prob caused by directory existing)
         }
-        fs.writeFileSync(filepath.replace('test-files/', 'actual-files/'));
+        var debugFilepath = filepath.replace('test-files/', 'actual-files/');
+        fs.writeFileSync(debugFilepath, this.output);
       }
     });
     after(function cleanup () {
