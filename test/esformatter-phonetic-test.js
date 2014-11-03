@@ -28,6 +28,7 @@ describe('esformatter-phonetic', function () {
 
     it('updates the names', function () {
       // TODO: Generate a seed and stick to it
+      console.log('');
       console.log(this.output);
     });
   });
