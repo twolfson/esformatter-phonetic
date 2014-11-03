@@ -56,4 +56,13 @@ describe('esformatter-phonetic', function () {
       assert.strictEqual(this.output, expectedOutput);
     });
   });
+
+  describe.only('formatting a JS file with references to browser variables', function () {
+    testUtils.format(__dirname + '/test-files/browser-variables.js');
+
+    it('does not affect the browser variables', function () {
+      var expectedOutput = fs.readFileSync(__dirname + '/expected-files/browser-variables.js', 'utf8');
+      assert.strictEqual(this.output, expectedOutput);
+    });
+  });
 });
