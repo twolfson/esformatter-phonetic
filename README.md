@@ -2,6 +2,14 @@
 
 Esformatter plugin that renames variables and functions to pronounceable names
 
+**Progress on this project has paused. I thought it was a simple problem but there are some tricky parts. For the time being, please use `beautify-with-words`.**
+
+Problems:
+
+- Don't rename undeclared variables (e.g. `console`)
+- Don't rename variables inside of a `with` (unable to predict undeclared/not)
+- Determine whether variable has been declared (e.g. analyze hoisting)
+
 ## Getting Started
 Install the module with: `npm install esformatter-phonetic`
 
