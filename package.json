@@ -29,6 +29,7 @@
     "test": "mocha"
   },
   "dependencies": {
+    "obj-extend": "~0.1.0",
     "phonetic": "~0.1.0"
   },
   "devDependencies": {
