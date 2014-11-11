@@ -7,6 +7,8 @@ var esformatterPhonetic = require('../');
 // Register our plugin
 esformatter.register(esformatterPhonetic);
 
+// TODO: Allow for updating top level variables via `topLevel: true`
+
 // Define test utilities
 var testUtils = {
   format: function (filepath) {
@@ -39,29 +41,11 @@ var testUtils = {
 
 // Start our tests
 describe('esformatter-phonetic', function () {
-  describe('formatting a JS file with a single variable in a `var`', function () {
-    testUtils.format(__dirname + '/test-files/single-variables.js');
+  describe('formatting a JS file with a declared `var`', function () {
+    testUtils.format(__dirname + '/test-files/declared-yes.js');
 
     it('updates the names', function () {
-      var expectedOutput = fs.readFileSync(__dirname + '/expected-files/single-variables.js', 'utf8');
-      assert.strictEqual(this.output, expectedOutput);
-    });
-  });
-
-  describe('formatting a JS file with multiple variables in a `var`', function () {
-    testUtils.format(__dirname + '/test-files/multiple-variables.js');
-
-    it('updates the names', function () {
-      var expectedOutput = fs.readFileSync(__dirname + '/expected-files/multiple-variables.js', 'utf8');
-      assert.strictEqual(this.output, expectedOutput);
-    });
-  });
-
-  describe.only('formatting a JS file with references to browser variables', function () {
-    testUtils.format(__dirname + '/test-files/browser-variables.js');
-
-    it('does not affect the browser variables', function () {
-      var expectedOutput = fs.readFileSync(__dirname + '/expected-files/browser-variables.js', 'utf8');
+      var expectedOutput = fs.readFileSync(__dirname + '/expected-files/declared-yes.js', 'utf8');
       assert.strictEqual(this.output, expectedOutput);
     });
   });
