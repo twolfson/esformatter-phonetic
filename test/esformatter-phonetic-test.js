@@ -59,9 +59,9 @@ describe('esformatter-phonetic', function () {
     });
   });
 
-
   // TODO: Move `ecmaVariableScope` from 3 to 4 loops. The third will tag the original identifier with a `sawWith` flag
-  //   Then, the 4th will move from `insideWith` to `usedInAWith`
+  //   Then, the 4th will move add `usedInAWith`
+  // TODO: Also, remove `declared` as it is impractical
   describe.skip('formatting a JS file with a variable that is possibly a property', function () {
     testUtils.format(__dirname + '/test-files/declared-unknown.js');
 
@@ -69,5 +69,9 @@ describe('esformatter-phonetic', function () {
       var expectedOutput = fs.readFileSync(__dirname + '/expected-files/declared-unknown.js', 'utf8');
       assert.strictEqual(this.output, expectedOutput);
     });
+  });
+
+  describe('formatting a JS file with a top level variable', function () {
+
   });
 });
