@@ -5,13 +5,13 @@ var esformatter = require('esformatter');
 var extend = require('obj-extend');
 var esformatterPhonetic = require('../');
 
-// Register our plugin
-esformatter.register(esformatterPhonetic);
-
 // Define test utilities
 var testUtils = {
   format: function (filepath, options) {
     before(function formatFn () {
+      // Register our plugin
+      esformatter.register(esformatterPhonetic);
+
       // Format our content
       var input = fs.readFileSync(filepath, 'utf8');
       this.output = esformatter.format(input, {
@@ -19,6 +19,9 @@ var testUtils = {
           baseSeed: 1337
         }, options)
       });
+
+      // Unregister our plugin
+      esformatter.unregister(esformatterPhonetic);
 
       // If we are in a debug environment, write the output to disk
       if (process.env.TEST_DEBUG) {
@@ -114,21 +117,27 @@ describe('esformatter-phonetic', function () {
 describe('esformatter-phonetic', function () {
   describe('formatting a script with no potential changes', function () {
     before(function formatNonupdatableScript () {
-      var ast = esformatter.format([
-        'console.log(\'hello\');'
-      ].join('\n'), {
-        plugins: [{
+      // Define and register plugins
+      var beforePlugin = {
+        transform: function (ast) {
           // Save incoming AST
-          transform: function (ast) {
-            console.log(ast);
-          }
-        }, esformatterPhonetic, {
+          console.log(ast);
+        }
+      };
+      var afterPlugin = {
+        transform: function (ast) {
           // Save outgoing AST
-          transform: function (ast) {
-            console.log(ast);
-          }
-        }]
-      });
+          console.log(ast);
+        }
+      };
+      esformatter.register(beforePlugin);
+      esformatter.register(esformatterPhonetic);
+      esformatter.register(afterPlugin);
+
+      // Parse our content
+      esformatter.format([
+        'console.log(\'hello\');'
+      ].join('\n'));
     });
 
     it('leaves the tree clean', function () {
