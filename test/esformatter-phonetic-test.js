@@ -1,7 +1,7 @@
 // Load in dependencies
 var assert = require('assert');
 var fs = require('fs');
-var deepClone = require('clone');
+var CircularJSON = require('circular-json');
 var esformatter = require('esformatter');
 var extend = require('obj-extend');
 var esformatterPhonetic = require('../');
@@ -123,13 +123,13 @@ describe('esformatter-phonetic', function () {
       var beforePlugin = {
         transform: function (ast) {
           // Save incoming AST
-          that.beforeAst = deepClone(ast);
+          that.beforeAstJson = CircularJSON.stringify(ast);
         }
       };
       var afterPlugin = {
         transform: function (ast) {
           // Save outgoing AST
-          that.afterAst = deepClone(ast);
+          that.afterAstJson = CircularJSON.stringify(ast);
         }
       };
       esformatter.register(beforePlugin);
@@ -148,7 +148,7 @@ describe('esformatter-phonetic', function () {
     });
 
     it('leaves the tree clean', function () {
-      assert.deepEqual(this.beforeAst, this.afterAst);
+      assert.strictEqual(this.beforeAstJson, this.afterAstJson);
     });
   });
 });
