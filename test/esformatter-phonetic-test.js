@@ -2,6 +2,7 @@
 var assert = require('assert');
 var fs = require('fs');
 var esformatter = require('esformatter');
+var extend = require('obj-extend');
 var esformatterPhonetic = require('../');
 
 // Register our plugin
@@ -11,14 +12,14 @@ esformatter.register(esformatterPhonetic);
 
 // Define test utilities
 var testUtils = {
-  format: function (filepath) {
+  format: function (filepath, options) {
     before(function formatFn () {
       // Format our content
       var input = fs.readFileSync(filepath, 'utf8');
       this.output = esformatter.format(input, {
-        phonetic: {
+        phonetic: extend({
           baseSeed: 1337
-        }
+        }, options)
       });
 
       // If we are in a debug environment, write the output to disk
@@ -72,6 +73,31 @@ describe('esformatter-phonetic', function () {
   });
 
   describe('formatting a JS file with a top level variable', function () {
+    testUtils.format(__dirname + '/test-files/top-level-yes.js');
 
+    it('does not update the names', function () {
+      var expectedOutput = fs.readFileSync(__dirname + '/expected-files/top-level-yes.js', 'utf8');
+      assert.strictEqual(this.output, expectedOutput);
+    });
+  });
+
+  describe('formatting a JS file with a non-top level variable', function () {
+    testUtils.format(__dirname + '/test-files/top-level-no.js');
+
+    it('does not update the names', function () {
+      var expectedOutput = fs.readFileSync(__dirname + '/expected-files/top-level-no.js', 'utf8');
+      assert.strictEqual(this.output, expectedOutput);
+    });
+  });
+
+  describe('formatting a JS file with a top level variable and allowed renames for top levels', function () {
+    testUtils.format(__dirname + '/test-files/top-level-override.js', {
+      renameTopLevel: true
+    });
+
+    it('does not update the names', function () {
+      var expectedOutput = fs.readFileSync(__dirname + '/expected-files/top-level-override.js', 'utf8');
+      assert.strictEqual(this.output, expectedOutput);
+    });
   });
 });
