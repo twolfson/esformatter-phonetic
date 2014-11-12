@@ -49,4 +49,22 @@ describe('esformatter-phonetic', function () {
       assert.strictEqual(this.output, expectedOutput);
     });
   });
+
+  describe('formatting a JS file with an undeclared variable', function () {
+    testUtils.format(__dirname + '/test-files/declared-no.js');
+
+    it('does not update the names', function () {
+      var expectedOutput = fs.readFileSync(__dirname + '/expected-files/declared-no.js', 'utf8');
+      assert.strictEqual(this.output, expectedOutput);
+    });
+  });
+
+  describe('formatting a JS file with a variable that is possibly a property', function () {
+    testUtils.format(__dirname + '/test-files/declared-unknown.js');
+
+    it('does not update the names', function () {
+      var expectedOutput = fs.readFileSync(__dirname + '/expected-files/declared-unknown.js', 'utf8');
+      assert.strictEqual(this.output, expectedOutput);
+    });
+  });
 });
