@@ -119,16 +119,17 @@ describe('esformatter-phonetic', function () {
   describe('formatting a script with no potential changes', function () {
     before(function formatNonupdatableScript () {
       // Define and register plugins
+      var that = this;
       var beforePlugin = {
         transform: function (ast) {
           // Save incoming AST
-          this.beforeAst = deepClone(ast);
+          that.beforeAst = deepClone({});
         }
       };
       var afterPlugin = {
         transform: function (ast) {
           // Save outgoing AST
-          this.afterAst = deepClone(ast);
+          that.afterAst = deepClone({});
         }
       };
       esformatter.register(beforePlugin);
