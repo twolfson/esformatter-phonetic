@@ -8,8 +8,6 @@ var esformatterPhonetic = require('../');
 // Register our plugin
 esformatter.register(esformatterPhonetic);
 
-// TODO: Allow for updating top level variables via `topLevel: true`
-
 // Define test utilities
 var testUtils = {
   format: function (filepath, options) {
