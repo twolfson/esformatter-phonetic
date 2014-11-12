@@ -109,3 +109,30 @@ describe('esformatter-phonetic', function () {
     });
   });
 });
+
+// Edge cases
+describe('esformatter-phonetic', function () {
+  describe('formatting a script with no potential changes', function () {
+    before(function formatNonupdatableScript () {
+      var ast = esformatter.format([
+        'console.log(\'hello\');'
+      ].join('\n'), {
+        plugins: [{
+          // Save incoming AST
+          transform: function (ast) {
+            console.log(ast);
+          }
+        }, esformatterPhonetic, {
+          // Save outgoing AST
+          transform: function (ast) {
+            console.log(ast);
+          }
+        }]
+      });
+    });
+
+    it('leaves the tree clean', function () {
+
+    });
+  });
+});
