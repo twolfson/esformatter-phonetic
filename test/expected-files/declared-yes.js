@@ -1,4 +1,4 @@
 function hello() {
-  var renameA = {};
-  renameA.log(window);
+  var Esemsep = {};
+  Esemsep.log(window);
 }
