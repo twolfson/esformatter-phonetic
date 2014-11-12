@@ -2,6 +2,7 @@
 var assert = require('assert');
 var fs = require('fs');
 var CircularJSON = require('circular-json');
+var deepClone = require('clone');
 var esformatter = require('esformatter');
 var extend = require('obj-extend');
 var esformatterPhonetic = require('../');
@@ -10,8 +11,23 @@ var esformatterPhonetic = require('../');
 var testUtils = {
   format: function (filepath, options) {
     before(function formatFn () {
-      // Register our plugin
+      // Define plugins for saving AST before and after
+      var that = this;
+      var beforePlugin = {
+        transform: function (ast) {
+          that.beforeAst = deepClone(ast);
+        }
+      };
+      var afterPlugin = {
+        transform: function (ast) {
+          that.afterAst = deepClone(ast);
+        }
+      };
+
+      // Register our plugins
+      esformatter.register(beforePlugin);
       esformatter.register(esformatterPhonetic);
+      esformatter.register(afterPlugin);
 
       // Format our content
       var input = fs.readFileSync(filepath, 'utf8');
@@ -21,8 +37,10 @@ var testUtils = {
         }, options)
       });
 
-      // Unregister our plugin
+      // Unregister our plugins
+      esformatter.unregister(beforePlugin);
       esformatter.unregister(esformatterPhonetic);
+      esformatter.unregister(afterPlugin);
 
       // If we are in a debug environment, write the output to disk
       if (process.env.TEST_DEBUG) {
@@ -117,38 +135,16 @@ describe('esformatter-phonetic', function () {
 // Edge cases
 describe('esformatter-phonetic', function () {
   describe('formatting a script with no potential changes', function () {
-    before(function formatNonupdatableScript () {
-      // Define and register plugins
-      var that = this;
-      var beforePlugin = {
-        transform: function (ast) {
-          // Save incoming AST
-          that.beforeAstJson = CircularJSON.stringify(ast);
-        }
-      };
-      var afterPlugin = {
-        transform: function (ast) {
-          // Save outgoing AST
-          that.afterAstJson = CircularJSON.stringify(ast);
-        }
-      };
-      esformatter.register(beforePlugin);
-      esformatter.register(esformatterPhonetic);
-      esformatter.register(afterPlugin);
-
-      // Parse our content
-      esformatter.format([
-        'console.log(\'hello\');'
-      ].join('\n'));
-
-      // Remove our plugins
-      esformatter.unregister(beforePlugin);
-      esformatter.unregister(esformatterPhonetic);
-      esformatter.unregister(afterPlugin);
-    });
+    testUtils.format(__dirname + '/test-files/no-changes.js');
 
     it('leaves the tree clean', function () {
-      assert.strictEqual(this.beforeAstJson, this.afterAstJson);
+      var beforeJson = CircularJSON.stringify(this.beforeAst);
+      var afterJson = CircularJSON.stringify(this.afterAst);
+      assert.strictEqual(beforeJson, afterJson);
     });
+  });
+
+  describe('formatting a script with renames', function () {
+    // it('updates the
   });
 });
