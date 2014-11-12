@@ -72,6 +72,13 @@ describe('esformatter-phonetic', function () {
       var expectedOutput = fs.readFileSync(__dirname + '/expected-files/declared-yes.js', 'utf8');
       assert.strictEqual(this.output, expectedOutput);
     });
+
+    it('updates the node\'s name', function () {
+      // {Program} (afterAst) -> {fn} (body[0]) -> {var} (body.body[0])
+      //   -> esemsep {declarations[0].id}
+      var identifier = this.afterAst.body[0].body.body[0].declarations[0].id;
+      assert.strictEqual(identifier.name, 'esemsep');
+    });
   });
 
   describe('formatting a JS file with an undeclared variable', function () {
@@ -144,9 +151,5 @@ describe('esformatter-phonetic', function () {
       var afterJson = CircularJSON.stringify(this.afterAst);
       assert.strictEqual(beforeJson, afterJson);
     });
-  });
-
-  describe('formatting a script with renames', function () {
-    // it('updates the
   });
 });
