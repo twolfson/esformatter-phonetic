@@ -29,7 +29,7 @@
     "test": "mocha"
   },
   "dependencies": {
-    "ecma-variable-scope": "~1.0.1",
+    "ecma-variable-scope": "~2.0.0",
     "obj-extend": "~0.1.0",
     "phonetic": "~0.1.0",
     "rocambole": "~0.3.6"
