@@ -62,10 +62,10 @@ describe('esformatter-phonetic', function () {
   });
 
   describe('formatting a JS file with a variable that is possibly a property', function () {
-    testUtils.format(__dirname + '/test-files/declared-unknown.js');
+    testUtils.format(__dirname + '/test-files/with.js');
 
     it('does not update the names', function () {
-      var expectedOutput = fs.readFileSync(__dirname + '/expected-files/declared-unknown.js', 'utf8');
+      var expectedOutput = fs.readFileSync(__dirname + '/expected-files/with.js', 'utf8');
       assert.strictEqual(this.output, expectedOutput);
     });
   });
