@@ -138,6 +138,11 @@ describe('esformatter-phonetic', function () {
       esformatter.format([
         'console.log(\'hello\');'
       ].join('\n'));
+
+      // Remove our plugins
+      esformatter.unregister(beforePlugin);
+      esformatter.unregister(esformatterPhonetic);
+      esformatter.unregister(afterPlugin);
     });
 
     it('leaves the tree clean', function () {
