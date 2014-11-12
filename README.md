@@ -1,15 +1,11 @@
 # esformatter-phonetic [![Build status](https://travis-ci.org/twolfson/esformatter-phonetic.png?branch=master)](https://travis-ci.org/twolfson/esformatter-phonetic)
 
-Esformatter plugin that renames variables and functions to pronounceable names
+[Esformatter][`esformatter`] plugin that renames variables and functions to pronounceable names
 
-**Progress on this project has paused. I thought it was a simple problem but there are some tricky parts. For the time being, please use `beautify-with-words`.**
+This was built to make reading obfuscated scripts easier (e.g. expand a single character variable to a full name, `a` -> `apple`). It was inspired by [`beautify-with-words`][] but we wanted to leverage other [`esformatter`][] plugins.
 
-Problems:
-
-- Don't rename undeclared variables (e.g. `console`)
-- Don't rename variables inside of a `with` (unable to predict undeclared/not)
-- Determine whether variable has been declared (e.g. analyze hoisting)
-    - Might be able to leverage this https://github.com/leobalter/rocambole-method-rename/blob/e872676e4a2cd5bb98bb19c3c7e7f44517c251f4/index.js
+[`beautify-with-words`]: https://github.com/zertosh/beautify-with-words
+[`esformatter`]: https://github.com/millermedeiros/esformatter
 
 ## Getting Started
 Install the module with: `npm install esformatter-phonetic`
