@@ -1,7 +1,7 @@
 function hello() {
-  var renameA = true;
+  var Esemsep = true;
   if (true) {
     // DEV: These remain the same name for intention hinting
-    let renameA = false;
+    let Esemsep = false;
   }
 }
