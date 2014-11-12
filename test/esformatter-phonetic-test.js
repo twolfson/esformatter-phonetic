@@ -123,13 +123,13 @@ describe('esformatter-phonetic', function () {
       var beforePlugin = {
         transform: function (ast) {
           // Save incoming AST
-          that.beforeAst = deepClone({});
+          that.beforeAst = deepClone(ast);
         }
       };
       var afterPlugin = {
         transform: function (ast) {
           // Save outgoing AST
-          that.afterAst = deepClone({});
+          that.afterAst = deepClone(ast);
         }
       };
       esformatter.register(beforePlugin);
@@ -148,7 +148,7 @@ describe('esformatter-phonetic', function () {
     });
 
     it('leaves the tree clean', function () {
-      assert.strictEqual(this.beforeAst, this.afterAst);
+      assert.deepEqual(this.beforeAst, this.afterAst);
     });
   });
 });
