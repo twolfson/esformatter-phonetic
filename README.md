@@ -52,11 +52,20 @@ We allow for options via a `phonetic` key in your `esformatter` options.
 - Any option provided by [`phonetic`][] (e.g. `syllables`, `phoneticSimplicity`)
 - baseSeed `String|Number` - Starting point for generating phonetic names.
     - If specified, we will start here and add `1` to the value (i.e. for numbers, it will increment. for strings, it will concatenate).
+- renameTopLevel `Boolean` - Flag to rename variables defined at top level or not
+    - This is useful because in browser contexts, these variables are written to the `window` object.
+    - By default, this is `false` (no rename occurs).
 
 [`phonetic`]: https://github.com/TomFrost/node-phonetic
 
 ### `esformatterPhonetic.transform(ast)`
+Walk the [AST][] and rename `variables` that do not touch a `with` and have been `declared`.
 
+**Warning: This mutates the AST in place**
+
+- ast `AbstractSyntaxTree` - Abstract syntax tree provided by `esformatter`
+
+[AST]: http://en.wikipedia.org/wiki/Abstract_syntax_tree
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint via [grunt](https://github.com/gruntjs/grunt) and test via `npm test`.
