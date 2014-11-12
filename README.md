@@ -10,16 +10,53 @@ This was built to make reading obfuscated scripts easier (e.g. expand a single c
 ## Getting Started
 Install the module with: `npm install esformatter-phonetic`
 
+Then, register it as a plugin and format your JS:
+
 ```js
-var esformatter_phonetic = require('esformatter-phonetic');
-esformatter_phonetic.awesome(); // "awesome"
+// Load and register our plugin
+var esformatter = require('esformatter');
+var esformatterPhonetic = require('esformatter-phonetic');
+esformatter.register(esformatterPhonetic);
+
+// Format our code
+esformatter.format([
+  'function hello() {',
+    'var a = \'hello\';',
+    'console.log(a);',
+  '}'
+].join('\n'));
+/*
+function hello() {
+  var kusoce = 'hello';
+  console.log(kusoce);
+}
+*/
+```
+
+Alternatively, load it via `format` or `.esformatter`:
+
+```js
+{
+  plugins: [
+    'esformatter-phonetic'
+  ]
+}
 ```
 
 ## Documentation
-_(Coming soon)_
+`esformatter-phonetic` exposes `exports.transform` for consumption by `esformatter`.
 
-## Examples
-_(Coming soon)_
+### Options
+We allow for options via a `phonetic` key in your `esformatter` options.
+
+- Any option provided by [`phonetic`][] (e.g. `syllables`, `phoneticSimplicity`)
+- baseSeed `String|Number` - Starting point for generating phonetic names.
+    - If specified, we will start here and add `1` to the value (i.e. for numbers, it will increment. for strings, it will concatenate).
+
+[`phonetic`]: https://github.com/TomFrost/node-phonetic
+
+### `esformatterPhonetic.transform(ast)`
+
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint via [grunt](https://github.com/gruntjs/grunt) and test via `npm test`.
