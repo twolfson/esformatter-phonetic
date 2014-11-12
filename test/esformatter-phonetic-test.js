@@ -55,6 +55,8 @@ var testUtils = {
     });
     after(function cleanup () {
       // Cleanup output
+      delete this.beforeAst;
+      delete this.afterAst;
       delete this.output;
     });
   }
