@@ -1,4 +1,4 @@
 function hello() {
-  var Esemsep = {};
-  Esemsep.log(window);
+  var esemsep = {};
+  esemsep.log(window);
 }
