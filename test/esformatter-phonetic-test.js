@@ -152,4 +152,14 @@ describe('esformatter-phonetic', function () {
       assert.strictEqual(beforeJson, afterJson);
     });
   });
+
+  describe('formatting a script with a brace statement and no potential changes', function () {
+    testUtils.format(__dirname + '/test-files/no-changes-braces.js');
+
+    it('leaves the tree clean', function () {
+      var beforeJson = CircularJSON.stringify(this.beforeAst);
+      var afterJson = CircularJSON.stringify(this.afterAst);
+      assert.strictEqual(beforeJson, afterJson);
+    });
+  });
 });
