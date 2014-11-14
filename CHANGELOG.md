@@ -1,4 +1,6 @@
 # esformatter-phonetic changelog
+1.4.0 - Added `renamePerScope` to allow renames on a per scope basis
+
 1.3.1 - Fixed up improper dependency location
 
 1.3.0 - Moved to `estraverse` to consistent safe cleanup
