@@ -55,6 +55,11 @@ We allow for options via a `phonetic` key in your `esformatter` options.
 - renameTopLevel `Boolean` - Flag to rename variables defined at top level or not
     - This is useful because in browser contexts, these variables are written to the `window` object.
     - By default, this is `false` (no rename occurs).
+- renamePerScope `Boolean` - Flag to rename variables on a per-scope basis
+    - This supports using different names for `lexical` and `block` scoped variables.
+    - This is useful for minified scripts that reuse names for variables to save space.
+        - The downside is it loses potential shared context if the minifier did not leverage that optimization.
+    - By default, this is `false` (common name used between scopes).
 
 [`phonetic`]: https://github.com/TomFrost/node-phonetic
 
