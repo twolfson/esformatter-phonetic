@@ -134,7 +134,7 @@ describe('esformatter-phonetic', function () {
       renamePerScope: true
     });
 
-    it.only('uses the different variable names', function () {
+    it('uses the different variable names', function () {
       var expectedOutput = fs.readFileSync(__dirname + '/expected-files/common-name-scoped.js', 'utf8');
       assert.strictEqual(this.output, expectedOutput);
     });
