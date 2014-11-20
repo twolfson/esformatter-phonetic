@@ -26,7 +26,8 @@
     "node": ">= 0.10.0"
   },
   "scripts": {
-    "test": "mocha"
+    "lint": "jshint \"lib/**/*.js\" \"test/*.js\"",
+    "test": "npm run lint && mocha"
   },
   "dependencies": {
     "ecma-variable-scope": "~2.1.0",
@@ -42,6 +43,7 @@
     "grunt": "~0.4.1",
     "grunt-contrib-jshint": "~0.6.0",
     "grunt-contrib-watch": "~0.4.0",
+    "jshint": "~2.5.10",
     "mocha": "~1.11.0"
   },
   "keywords": [
