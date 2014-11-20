@@ -26,8 +26,7 @@
     "node": ">= 0.10.0"
   },
   "scripts": {
-    "_comment": "TODO: Figure out how to deal with recursion because it will be a problem",
-    "lint": "jshint docs/*.js lib/*.js test/*.js && jscs docs/*.js lib/*.js test/*.js",
+    "lint": "jshint docs/ lib/ test/*.js && jscs docs/ lib/ test/*.js",
     "test": "npm run lint && mocha"
   },
   "dependencies": {
