@@ -41,9 +41,6 @@
     "circular-json": "~0.1.6",
     "clone": "~0.1.18",
     "esformatter": "~0.4.3",
-    "grunt": "~0.4.1",
-    "grunt-contrib-jshint": "~0.6.0",
-    "grunt-contrib-watch": "~0.4.0",
     "jscs": "~1.7.3",
     "jshint": "~2.5.10",
     "mocha": "~1.11.0"
