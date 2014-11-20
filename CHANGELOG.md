@@ -1,4 +1,6 @@
 # esformatter-phonetic changelog
+1.5.1 - Replaced `postinstall` with `pretest`
+
 1.5.0 - Added style and lint checking via `twolfson-style`
 
 1.4.0 - Added `renamePerScope` to allow renames on a per scope basis
