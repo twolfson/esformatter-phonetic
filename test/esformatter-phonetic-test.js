@@ -129,7 +129,7 @@ describe('esformatter-phonetic', function () {
     });
   });
 
-  describe('formatting a JS file with a common variable name in different scopes and a request to vary them', function () {
+  describe('formatting a JS file with a common var name in different scopes and a request to vary them', function () {
     testUtils.format(__dirname + '/test-files/common-name-scoped.js', {
       renamePerScope: true
     });
