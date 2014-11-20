@@ -1,4 +1,6 @@
 # esformatter-phonetic changelog
+1.5.0 - Added style and lint checking via `twolfson-style`
+
 1.4.0 - Added `renamePerScope` to allow renames on a per scope basis
 
 1.3.1 - Fixed up improper dependency location
