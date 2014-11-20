@@ -35,5 +35,20 @@
   "disallowTrailingWhitespace": true,
   "disallowTrailingComma": true,
   "disallowKeywordsOnNewLine": ["else", "catch", "finally"],
-  "requireLineFeedAtFileEnd": true
+  "requireLineFeedAtFileEnd": true,
+  "maximumLineLength": {
+    "value": 120,
+    "allowUrlComments": true
+  },
+  "requiredCapitalizedConstructors: true,
+  "requireDotNotation": true,
+  "disallowYodaConditions": true,
+  "requireSpaceAfterLineComment": true,
+  "disallowNewlineBeforeBlockStatements": true,
+  "validateLineBreaks": "LF",
+  "validateQuoteMarks": { "mark": "'", "escape": true },
+  "validateIndentation": 2,
+  "validateParameterSeparator": ", ",
+  "safeContextKeyword": ["that"]
 }
+
