@@ -26,6 +26,7 @@
     "node": ">= 0.10.0"
   },
   "scripts": {
+    "postinstall": "twolfson-style install || echo 'Skipping `twolfson-style` install...'",
     "lint": "jshint docs/ lib/ test/*.js && jscs docs/ lib/ test/*.js",
     "test": "npm run lint && mocha"
   },
@@ -42,7 +43,8 @@
     "esformatter": "~0.4.3",
     "jscs": "~1.7.3",
     "jshint": "~2.5.10",
-    "mocha": "~1.11.0"
+    "mocha": "~1.11.0",
+    "twolfson-style": "~1.0.0"
   },
   "keywords": [
     "esformatter",
