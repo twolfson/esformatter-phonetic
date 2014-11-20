@@ -14,7 +14,7 @@
     "beforeOpeningRoundBrace": true
   },
   "disallowSpacesInCallExpression": true,
-  "requireMultipleVarDecl": true,
+  "disallowMultipleVarDecl": true,
   "requireBlocksOnNewline": 1,
   "disallowPaddingNewlinesInBlocks": true,
   "disallowSpacesInsideObjectBrackets": "all",
